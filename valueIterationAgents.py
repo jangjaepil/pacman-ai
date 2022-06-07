@@ -45,6 +45,24 @@ class ValueIterationAgent(ValueEstimationAgent):
 
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
+        self.runValueIteration()
+
+    def runValueIteration(self):
+        # Write value iteration code here
+        "*** YOUR CODE HERE ***"
+        for i in range (self.iterations):
+            values=self.values.copy()
+            for s in self.mdp.getStates():
+                self.values[s] = -float('inf')
+
+                for a in  self.mdp.getPossibleActions(s):
+                    temp=0
+                    for sprime,prob in self.mdp.getTransitionStatesAndProbs(s,a):
+                        temp+=prob*(self.mdp.getReward(s, a, sprime)+ self.discount *values[sprime])
+                    self.values[s] = max(self.values[s], temp)
+                if self.values[s] == -float('inf'):
+                    self.values[s] = 0.0
+
 
 
     def getValue(self, state):
