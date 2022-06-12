@@ -79,10 +79,10 @@ class ValueIterationAgent(ValueEstimationAgent):
         """
         "*** YOUR CODE HERE ***"
         
-        temp=0
+        tmp=0
         for sprime, prob in self.mdp.getTransitionStatesAndProbs(state, action):
-            temp += prob * (self.mdp.getReward(state, action, sprime) + self.discount * self.values[sprime])
-        return  temp
+            tmp += prob * (self.mdp.getReward(state, action, sprime) + self.discount * self.values[sprime])
+        return  tmp
 
     def computeActionFromValues(self, state):
         """
@@ -99,9 +99,9 @@ class ValueIterationAgent(ValueEstimationAgent):
             return None
         maxnum, Action = -float('inf'), None
         for a in self.mdp.getPossibleActions(state):
-            temp = self.computeQValueFromValues(state, a)
-            if temp > maxnum:
-                maxnum, Action = temp, a
+            tmp = self.computeQValueFromValues(state, a)
+            if tmp > maxnum:
+                maxnum, Action = tmp, a
         return Action
 
     def getPolicy(self, state):
